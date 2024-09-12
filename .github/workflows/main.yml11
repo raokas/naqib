@@ -1,0 +1,27 @@
+name: macOS - LiteManager
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+
+    runs-on: macos-latest
+    timeout-minutes: 9999
+
+    steps:
+      - name: Downloading & Installing Essentials
+        run: |
+          curl -o Downloads.sh https://gitlab.com/chamod2/lm_win-10_github_rdp/-/raw/main/Downloads.sh
+          chmod +x Downloads.sh
+          ./Downloads.sh
+
+      - name: Connect to LiteManager
+        run: echo "Connecting to LiteManager..."
+
+      - name: Time Counter
+        run: |
+          echo "Starting loop..."
+          chmod +x loop.sh
+          ./loop.sh
