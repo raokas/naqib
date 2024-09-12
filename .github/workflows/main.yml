@@ -1,36 +1,27 @@
-name: Windows - LiteManager
-
+name: macOS - LiteManager
 
 on:
-
   workflow_dispatch:
 
-
 jobs:
-
   build:
-
     name: Start Building...
 
-    runs-on: windows-latest
-
+    runs-on: macos-latest
     timeout-minutes: 9999
 
-    
-
     steps:
-
       - name: Downloading & Installing Essentials
-
         run: |
-
-          Invoke-Webrequest -Uri "https://gitlab.com/chamod2/lm_win-10_github_rdp/-/raw/main/Downloads.bat" -OutFile "Downloads.bat"
-
-          cmd /c Downloads.bat
-
+          curl -o Downloads.sh https://gitlab.com/chamod2/lm_win-10_github_rdp/-/raw/main/Downloads.sh
+          chmod +x Downloads.sh
+          ./Downloads.sh
 
       - name: Connect to LiteManager
+        run: echo "Connecting to LiteManager..."
 
       - name: Time Counter
-
-        run: cmd /c loop.bat
+        run: |
+          echo "Starting loop..."
+          chmod +x loop.sh
+          ./loop.sh
